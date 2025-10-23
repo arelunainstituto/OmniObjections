@@ -17,7 +17,7 @@ import {
 import { CallService } from '../call/call.service';
 import { SuggestionService } from '../suggestion/suggestion.service';
 import { ObjectionService } from '../objection/objection.service';
-import { WebSocketMessage, WebSocketMessageType, Speaker } from '@omni/types';
+import { WebSocketMessage, WebSocketMessageType, Speaker, CallStatus } from '@omni/types';
 
 @WebSocketGateway({
   cors: {
@@ -82,7 +82,7 @@ export class RealtimeGateway implements OnGatewayConnection, OnGatewayDisconnect
       });
 
       // Atualizar status para ativa
-      await this.callService.update(call.id, { status: 'active' });
+      await this.callService.update(call.id, { status: CallStatus.ACTIVE });
 
       // Salvar sessão
       this.callSessions.set(client.id, {
@@ -92,7 +92,7 @@ export class RealtimeGateway implements OnGatewayConnection, OnGatewayDisconnect
       });
 
       // Responder ao cliente
-      this.sendToClient(client, WebSocketMessageType.CALL_STARTED, {
+      this.sendToClient(client, WebSocketMessageType.START_CALL, {
         callId: call.id,
         message: 'Chamada iniciada com sucesso',
       });
@@ -151,7 +151,7 @@ export class RealtimeGateway implements OnGatewayConnection, OnGatewayDisconnect
 
       // Atualizar chamada
       await this.callService.update(session.callId, {
-        status: 'completed',
+        status: CallStatus.COMPLETED,
         endedAt: new Date(),
         notes,
         outcome,
@@ -161,7 +161,7 @@ export class RealtimeGateway implements OnGatewayConnection, OnGatewayDisconnect
       this.callSessions.delete(client.id);
       this.audioProcessors.get(client.id)?.clear();
 
-      this.sendToClient(client, WebSocketMessageType.CALL_ENDED, {
+      this.sendToClient(client, WebSocketMessageType.END_CALL, {
         callId: session.callId,
         duration: Date.now() - session.startTime,
       });

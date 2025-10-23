@@ -27,7 +27,7 @@ export class SuggestionController {
   }
 
   @Patch(':id/feedback')
-  async addFeedback(@Param('id') id: string, @Body() dto: SuggestionFeedbackDto) {
+  async addFeedback(@Param('id') _id: string, @Body() dto: SuggestionFeedbackDto) {
     return this.suggestionService.addFeedback(dto);
   }
 }

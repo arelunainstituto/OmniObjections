@@ -7,18 +7,25 @@ export class AssistantController {
 
   @Get('info')
   async getInfo() {
-    return this.assistantService.getAssistantInfo();
+    const info = await this.assistantService.getAssistantInfo();
+    return {
+      ...info,
+      demoMode: this.assistantService.isDemoMode(),
+    };
   }
 
   @Get('test')
   async testConnection() {
     const isConnected = await this.assistantService.testConnection();
+    const isDemo = this.assistantService.isDemoMode();
+
     return {
       connected: isConnected,
       assistantId: process.env.OPENAI_ASSISTANT_ID,
-      message: isConnected
-        ? 'Conexão com o Assistente OpenAI estabelecida com sucesso!'
-        : 'Falha ao conectar com o Assistente OpenAI',
+      mode: isDemo ? 'DEMO' : 'PRODUCTION',
+      message: isDemo
+        ? '🎭 Rodando em modo DEMO. Configure OPENAI_API_KEY para usar a API real.'
+        : '✅ Conexão com o Assistente OpenAI estabelecida com sucesso!',
     };
   }
 
@@ -40,6 +47,7 @@ export class AssistantController {
     return {
       suggestion,
       timestamp: new Date(),
+      mode: this.assistantService.isDemoMode() ? 'DEMO' : 'PRODUCTION',
     };
   }
 }
