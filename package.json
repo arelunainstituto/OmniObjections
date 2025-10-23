@@ -1,0 +1,42 @@
+{
+  "name": "omni-objections",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema inteligente de suporte a videochamadas comerciais - Grupo Areluna",
+  "scripts": {
+    "dev": "pnpm --parallel --filter \"./apps/*\" dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "build": "pnpm --filter \"./packages/*\" build && pnpm --filter \"./apps/*\" build",
+    "build:web": "pnpm --filter web build",
+    "build:api": "pnpm --filter api build",
+    "start:web": "pnpm --filter web start",
+    "start:api": "pnpm --filter api start:prod",
+    "lint": "pnpm --parallel --filter \"./apps/*\" --filter \"./packages/*\" lint",
+    "type-check": "pnpm --parallel --filter \"./apps/*\" --filter \"./packages/*\" type-check",
+    "test": "pnpm --parallel --filter \"./apps/*\" --filter \"./packages/*\" test",
+    "clean": "pnpm --parallel --filter \"./apps/*\" --filter \"./packages/*\" clean",
+    "setup": "pnpm install && pnpm --filter @omni/db setup && pnpm --filter web setup:ui"
+  },
+  "keywords": [
+    "sales",
+    "ai",
+    "nlp",
+    "real-time",
+    "transcription",
+    "supabase"
+  ],
+  "author": "Grupo Areluna",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "prettier": "^3.1.0",
+    "turbo": "^1.11.0",
+    "typescript": "^5.3.3"
+  }
+}
+

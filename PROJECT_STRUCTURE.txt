@@ -1,0 +1,244 @@
+📁 OmniObjections - Estrutura Completa do Projeto
+══════════════════════════════════════════════════
+
+omni-objections/
+│
+├── 📄 Configuração Root
+│   ├── package.json                    # Scripts e dependências do monorepo
+│   ├── pnpm-workspace.yaml            # Configuração do workspace
+│   ├── tsconfig.json                  # TypeScript config base
+│   ├── turbo.json                     # Turbo build config
+│   ├── .gitignore                     # Git ignore
+│   ├── .prettierrc                    # Prettier config
+│   ├── .eslintrc.json                 # ESLint config
+│   └── .cursorrules                   # Regras do Cursor
+│
+├── 📚 Documentação
+│   ├── README.md                      # Visão geral e quick start
+│   ├── SETUP.md                       # Guia de instalação detalhado
+│   ├── ARCHITECTURE.md                # Arquitetura técnica
+│   └── PROJECT_OVERVIEW.md            # Overview de negócio
+│
+├── 🛠️ Scripts
+│   ├── setup.sh                       # Setup automático
+│   └── dev.sh                         # Iniciar desenvolvimento
+│
+├── 📱 Apps (Aplicações)
+│   │
+│   ├── 🌐 web/ (Next.js 14)
+│   │   ├── package.json
+│   │   ├── next.config.js
+│   │   ├── tsconfig.json
+│   │   ├── tailwind.config.ts
+│   │   ├── postcss.config.js
+│   │   ├── .eslintrc.json
+│   │   │
+│   │   └── src/
+│   │       ├── app/                   # App Router (Next.js 14)
+│   │       │   ├── layout.tsx         # Layout principal
+│   │       │   ├── page.tsx           # Landing page
+│   │       │   ├── globals.css        # Estilos globais
+│   │       │   ├── call/
+│   │       │   │   └── page.tsx       # Página de chamada
+│   │       │   └── dashboard/
+│   │       │       └── page.tsx       # Dashboard
+│   │       │
+│   │       ├── components/            # Componentes React
+│   │       │   ├── ui/               # shadcn/ui components
+│   │       │   │   ├── button.tsx
+│   │       │   │   └── card.tsx
+│   │       │   └── call/             # Componentes da chamada
+│   │       │       ├── call-interface.tsx
+│   │       │       ├── transcript-panel.tsx
+│   │       │       ├── suggestions-panel.tsx
+│   │       │       └── metrics-panel.tsx
+│   │       │
+│   │       ├── stores/               # Zustand stores
+│   │       │   └── call-store.ts
+│   │       │
+│   │       └── lib/                  # Utilidades
+│   │           └── utils.ts
+│   │
+│   └── 🔧 api/ (NestJS)
+│       ├── package.json
+│       ├── nest-cli.json
+│       ├── tsconfig.json
+│       ├── env.example
+│       │
+│       └── src/
+│           ├── main.ts               # Entry point
+│           ├── app.module.ts         # Módulo raiz
+│           ├── health.controller.ts  # Health check
+│           │
+│           └── modules/              # Módulos da API
+│               ├── call/
+│               │   ├── call.module.ts
+│               │   ├── call.controller.ts
+│               │   └── call.service.ts
+│               │
+│               ├── knowledge/
+│               │   ├── knowledge.module.ts
+│               │   ├── knowledge.controller.ts
+│               │   └── knowledge.service.ts
+│               │
+│               ├── objection/
+│               │   ├── objection.module.ts
+│               │   ├── objection.controller.ts
+│               │   └── objection.service.ts
+│               │
+│               ├── suggestion/
+│               │   ├── suggestion.module.ts
+│               │   ├── suggestion.controller.ts
+│               │   └── suggestion.service.ts
+│               │
+│               └── realtime/
+│                   ├── realtime.module.ts
+│                   └── realtime.gateway.ts    # WebSocket
+│
+├── 📦 Packages (Bibliotecas Compartilhadas)
+│   │
+│   ├── 🔤 types/ (Tipos TypeScript)
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   │
+│   │   └── src/
+│   │       ├── index.ts
+│   │       ├── user.ts
+│   │       ├── call.ts
+│   │       ├── objection.ts
+│   │       ├── knowledge.ts
+│   │       ├── suggestion.ts
+│   │       ├── events.ts
+│   │       └── websocket.ts
+│   │
+│   ├── 🗄️ db/ (Database & Supabase)
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   │
+│   │   ├── src/
+│   │   │   ├── index.ts
+│   │   │   ├── client.ts             # Supabase client
+│   │   │   └── repositories/         # Data access layer
+│   │   │       ├── index.ts
+│   │   │       ├── user.repository.ts
+│   │   │       ├── call.repository.ts
+│   │   │       ├── objection.repository.ts
+│   │   │       ├── knowledge.repository.ts
+│   │   │       └── suggestion.repository.ts
+│   │   │
+│   │   └── supabase/
+│   │       ├── config.toml           # Configuração local
+│   │       ├── seed.sql              # Dados de exemplo
+│   │       └── migrations/
+│   │           └── 20240101000000_initial_schema.sql
+│   │
+│   └── 🧠 ai/ (AI Services)
+│       ├── package.json
+│       ├── tsconfig.json
+│       │
+│       └── src/
+│           ├── index.ts
+│           ├── config.ts
+│           └── services/
+│               ├── audio-processor.service.ts     # Buffer de áudio
+│               ├── transcription.service.ts       # Whisper API
+│               ├── objection-detector.service.ts  # NLP
+│               └── suggestion-engine.service.ts   # GPT-4
+│
+└── 🧪 Testes (Futuros)
+    ├── apps/web/__tests__/
+    ├── apps/api/test/
+    └── packages/ai/test/
+
+
+══════════════════════════════════════════════════
+📊 ESTATÍSTICAS DO PROJETO
+══════════════════════════════════════════════════
+
+📁 Estrutura:
+   - 2 aplicações (web + api)
+   - 3 packages compartilhados (types + db + ai)
+   - Total: ~80+ arquivos criados
+
+🎯 Funcionalidades:
+   ✅ Transcrição em tempo real (Whisper API)
+   ✅ Detecção de objeções (NLP)
+   ✅ Geração de sugestões (GPT-4)
+   ✅ Interface de chamada (Next.js)
+   ✅ WebSocket real-time (Socket.IO)
+   ✅ Base de dados completa (Supabase)
+   ✅ Documentação completa
+
+🛠️ Stack:
+   - Frontend: Next.js 14, TypeScript, Tailwind, shadcn/ui
+   - Backend: NestJS, Socket.IO
+   - Database: Supabase (PostgreSQL)
+   - AI: OpenAI (Whisper + GPT-4)
+   - Infra: pnpm workspaces, Turbo
+
+📝 Linhas de Código: ~5.000+
+
+══════════════════════════════════════════════════
+🚀 COMANDOS PRINCIPAIS
+══════════════════════════════════════════════════
+
+# Setup inicial
+./scripts/setup.sh
+
+# Desenvolvimento
+pnpm dev                 # Tudo
+pnpm dev:web            # Só frontend
+pnpm dev:api            # Só backend
+
+# Build
+pnpm build              # Tudo
+pnpm build:web          # Só frontend
+pnpm build:api          # Só backend
+
+# Database
+cd packages/db
+pnpm db:start           # Iniciar Supabase
+pnpm db:stop            # Parar Supabase
+pnpm db:reset           # Reset e migrations
+pnpm db:gen-types       # Gerar tipos
+
+# Testes
+pnpm test               # Todos os testes
+pnpm type-check         # Verificar tipos
+pnpm lint               # Lint
+
+# Limpeza
+pnpm clean              # Limpar builds
+
+══════════════════════════════════════════════════
+📚 DOCUMENTAÇÃO
+══════════════════════════════════════════════════
+
+Para Desenvolvedores:
+├── README.md                    # Quick start
+├── SETUP.md                     # Instalação detalhada
+├── ARCHITECTURE.md              # Arquitetura técnica
+└── PROJECT_OVERVIEW.md          # Visão de negócio
+
+Regras de Código:
+└── .cursorrules                 # Padrões e convenções
+
+Scripts:
+├── scripts/setup.sh             # Setup automático
+└── scripts/dev.sh               # Iniciar dev
+
+══════════════════════════════════════════════════
+🎯 PRÓXIMOS PASSOS
+══════════════════════════════════════════════════
+
+1. ✅ Executar: ./scripts/setup.sh
+2. ✅ Configurar .env files com API keys
+3. ✅ Executar: pnpm dev
+4. ✅ Acessar: http://localhost:3000
+5. ✅ Testar a aplicação
+6. ✅ Começar a desenvolver!
+
+══════════════════════════════════════════════════
+
+Desenvolvido com ❤️ pelo Grupo Areluna
+

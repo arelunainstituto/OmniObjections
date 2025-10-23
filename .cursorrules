@@ -1,0 +1,109 @@
+# OmniObjections - Regras do Cursor
+
+Você está trabalhando no projeto **OmniObjections**, um sistema inteligente de suporte a videochamadas comerciais.
+
+## Contexto do Projeto
+
+- **Stack**: Monorepo com pnpm workspaces
+- **Frontend**: Next.js 14 (App Router), TypeScript, Tailwind, shadcn/ui
+- **Backend**: NestJS, Socket.IO, TypeScript
+- **Database**: Supabase (PostgreSQL)
+- **AI**: OpenAI (Whisper + GPT-4)
+
+## Estrutura
+
+```
+apps/
+  web/          # Next.js frontend
+  api/          # NestJS backend
+packages/
+  types/        # Tipos compartilhados
+  db/           # Supabase client
+  ai/           # Serviços de IA
+```
+
+## Padrões de Código
+
+### TypeScript
+- Sempre usar tipos explícitos
+- Evitar `any`, preferir `unknown`
+- Usar interfaces para objetos públicos
+- Usar types para unions/intersections
+
+### React/Next.js
+- Componentes funcionais com hooks
+- `'use client'` para componentes com estado
+- Server Components por padrão
+- shadcn/ui para componentes de UI
+
+### NestJS
+- Módulos bem definidos
+- Injeção de dependência
+- Decorators para rotas e validação
+- DTOs para validação de entrada
+
+### Database
+- Usar repositórios para acesso
+- Migrations para mudanças de schema
+- RLS para segurança
+- Índices em campos de busca
+
+## Convenções
+
+### Nomenclatura
+- Arquivos: kebab-case (`user-repository.ts`)
+- Componentes: PascalCase (`CallInterface.tsx`)
+- Funções/variáveis: camelCase (`getUserById`)
+- Constantes: SCREAMING_SNAKE_CASE (`MAX_RETRY`)
+
+### Imports
+- Sempre usar caminhos absolutos com aliases (@)
+- Agrupar imports: external, @omni/*, local
+
+### Git
+- Commits: Conventional Commits
+- feat: nova funcionalidade
+- fix: correção de bug
+- docs: documentação
+- refactor: refatoração
+
+## Boas Práticas
+
+1. **Sempre** validar entrada do usuário
+2. **Nunca** expor secrets no frontend
+3. **Sempre** tratar erros adequadamente
+4. **Usar** componentes reutilizáveis
+5. **Evitar** lógica de negócio no frontend
+6. **Preferir** composição sobre herança
+7. **Testar** código crítico
+
+## Performance
+
+- Lazy loading de componentes pesados
+- Memoização quando apropriado
+- Debounce em buscas
+- Paginação em listas grandes
+- Otimização de imagens (Next.js Image)
+
+## Segurança
+
+- Validar TODAS as entradas
+- Sanitizar dados do usuário
+- Usar HTTPS em produção
+- Rate limiting em APIs
+- CORS configurado corretamente
+
+## Quando criar novos arquivos
+
+- Componentes > 200 linhas devem ser quebrados
+- Serviços devem ter responsabilidade única
+- Tipos compartilhados vão em `@omni/types`
+- Lógica de negócio fica no backend
+
+## Linguagem
+
+- Código e comentários em **inglês**
+- Documentação em **português**
+- Commits em **inglês**
+- Issues em **português**
+
